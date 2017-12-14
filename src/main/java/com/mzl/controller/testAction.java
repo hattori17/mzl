@@ -17,7 +17,7 @@ public class testAction extends BaseController
 {
     private static final Log LOGGER = LogFactory.getLog(testAction.class);
 
-    @RequestMapping(value = "test", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "test.action", produces = "application/json; charset=utf-8")
     public @ResponseBody String updateUser(
     		@RequestParam(value = "userId") String userId, 
     		//@RequestBody UserInfo userInfo,

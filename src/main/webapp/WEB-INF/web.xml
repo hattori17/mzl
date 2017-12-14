@@ -3,10 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<display-name>apidoc</display-name>
+	<display-name>mzl</display-name>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>apidoc.root</param-value>
+		<param-value>mzl.root</param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -31,7 +31,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>
-		<url-pattern>/</url-pattern>
+		<!-- <url-pattern>/</url-pattern> -->
+		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
@@ -39,6 +40,17 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<servlet>
+    <servlet-name>DruidStatView</servlet-name>
+    	<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>DruidStatView</servlet-name>
+    	<url-pattern>/druid/*</url-pattern>
+  	</servlet-mapping>
+  	<session-config>
+    	<session-timeout>30</session-timeout>
+  	</session-config>
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
