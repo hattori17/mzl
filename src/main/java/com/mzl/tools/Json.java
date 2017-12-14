@@ -21,7 +21,7 @@ public class Json {
 		}
 	}
 	
-	/*public static void datagrid(Datagrid dg,HttpServletResponse response) {
+	public static void datagrid(Datagrid dg,HttpServletResponse response) {
 		try {
 			String json = JSON.toJSONStringWithDateFormat(dg, "yyyy-MM-dd HH:mm:ss");
 			StringBuffer sb = new StringBuffer (json);
@@ -32,7 +32,7 @@ public class Json {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	public static void msg(Msg msg,HttpServletResponse response) {
 		try {

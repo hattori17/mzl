@@ -1,4 +1,4 @@
-package com.mzl.po;
+package com.mzl.entity;
 
 import java.io.Serializable;
 
