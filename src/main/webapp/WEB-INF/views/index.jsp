@@ -120,7 +120,7 @@ function openTab(tabname,tabsrc,that){
 		$('#content-wrapper').find('section.content-header ul li:last a').click();
 	}
 	//active
-	$('li').removeClass('active');
+	//$('li').removeClass('active');
 }
 function closeTab(that,id){
 	var li = $(that).parent().parent();

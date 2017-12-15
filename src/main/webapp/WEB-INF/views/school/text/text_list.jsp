@@ -13,10 +13,15 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content content-wrapper">
-
+	
+	<jsp:include page="../../messagebox.jsp" flush="true" >
+	<jsp:param name="id" value="dangerbox1" />
+	<jsp:param name="type" value="danger" />
+	<jsp:param name="title" value="错误" />
+	</jsp:include>
+	
    	<div class="box box-primary">
        <div class="box-header">
        	<div>
@@ -77,7 +82,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-
 </div>
 <!-- ./wrapper -->
 
@@ -100,18 +104,21 @@ var table = undefined;
   
   function search(){
 	  if(table==undefined){
-		  var para = {'module_key_id':'','insert_time':'','name_desc':''};
+		  var para = "module_key_id="+$('#module_key_id').val()+"&insert_time="+$('#insert_time').val()+"&name_desc="+$('#name_desc').val();
 		  table = $('#example1').DataTable({
-			    "ajax" : {  
-		             url : "select_test1.action",  
-		             type: "POST",
-		             data: function (data) {
-		                 return JSON.stringify($.extend(data,para));
-		             },
-		             dataType: "json",
-		             processData: false,
-		             contentType: 'application/json',
-		         },
+		         "ajax" : {
+		       		type:"POST",
+		      		url:"select_test1.action?"+para,
+		      		data: function (data) {
+		                 return JSON.stringify(data);
+		            },
+		      		contentType: 'application/json',
+		      		dataType:"json",
+		      		error:function(XMLHttpRequest, textStatus, errorThrown){
+		      			$('#dangerbox1').find('.msg').html(XMLHttpRequest.responseText)
+		      			$('#dangerbox1').fadeIn()
+		      		}
+	      		 },
 		         serverSide : true,//开启服务器模式:启用服务器分页  
 		         processing : true,//是否显示处理状态
 		         lengthChange:false,

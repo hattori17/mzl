@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mzl.entity.BaseResult;
 import com.mzl.service.BaseService;
-import com.mzl.tools.Msg;
 
 @Controller
 @RequestMapping("/")
@@ -32,20 +32,6 @@ public class BaseAction {
 		return mv;
 	}
 	
-	/*demo*/
-	@RequestMapping("desktop.action")
-	public ModelAndView desktop(HttpServletResponse response,HttpServletRequest request){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/desktop");
-		return mv;
-	}
-	@RequestMapping("datagrid.action")
-	public ModelAndView datagrid(HttpServletResponse response,HttpServletRequest request){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/datagrid");
-		return mv;
-	}
-	
 	@RequestMapping("login.action")
 	public ModelAndView login(HttpServletResponse response,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
@@ -57,10 +43,10 @@ public class BaseAction {
 	@RequestMapping("check_login.action")
 	public ModelAndView check_login(HttpServletResponse response,HttpServletRequest request,String phone,String password) throws IOException{
 		ModelAndView mv = new ModelAndView();
-		Msg msg = BaseService.login(phone, password);
-		if(msg.isSuccess()){
+		BaseResult br = BaseService.login(phone, password);
+		if(br.getResultCode()==0){
 			Map<String,Object> map = new HashMap<String,Object>();
-			map = (Map<String, Object>) msg.getObj();
+			map = (Map<String, Object>) br.getResultData();
 			request.getSession().setAttribute("key_id", map.get("key_id"));
 			request.getSession().setAttribute("name", map.get("name"));
 			mv.setViewName("/school/index");

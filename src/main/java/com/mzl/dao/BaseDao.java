@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mzl.entity.BaseResult;
 import com.mzl.entity.Page;
 import com.mzl.tools.Datagrid;
-import com.mzl.tools.Msg;
 
 @Repository
 public class BaseDao {
@@ -75,17 +75,17 @@ public class BaseDao {
 	}
 	
 	/*登陆*/
-	public Msg login(String phone,String password){
-		Msg msg = new Msg();
+	public BaseResult login(String phone,String password){
+		BaseResult br = new BaseResult();
 		String sql="select name,key_id from t_user where phone='"+phone+"' and password='"+password+"' and status=1";
 		Map<String,Object> map = this.getMap(sql);
 		if(!map.isEmpty()){
-			msg.setSuccess(true);
-			msg.setObj(map);
+			br.setResultCode(0);
+			br.setResultData(map);
 		}else{
-			msg.setSuccess(false);
+			br.setResultCode(-1);
 		}
-		return msg;
+		return br;
 	}
 	
 	public List<Map<String,Object>> list_prg_parentID(int parent_id){

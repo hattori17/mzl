@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.mzl.dao.BaseDao;
+import com.mzl.entity.BaseResult;
 import com.mzl.entity.Tree;
-import com.mzl.tools.Msg;
 
 @Service
 public class BaseService {
 	@Autowired
 	private BaseDao BaseDao;
 	
-	public Msg login(String phone,String password){
+	public BaseResult login(String phone,String password){
 		return BaseDao.login(phone, password);
 	}
 	

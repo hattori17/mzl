@@ -11,8 +11,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.mzl.tools.Json;
-import com.mzl.tools.Msg;
+import com.mzl.entity.BaseResult;
+import com.mzl.tools.AjaxReturn;
 
 /**
  * 异常统一处理
@@ -42,10 +42,10 @@ public class ExceptionHandler implements HandlerExceptionResolver {
                 }
                 //writer.write("{\"success\":false,\"msg\":\""+err+"\"}");
                 //writer.flush();
-                Msg err_msg = new Msg();
-                err_msg.setSuccess(false);
-                err_msg.setMsg(err);
-                Json.write(err_msg, response);
+                BaseResult result = new BaseResult();
+                result.setResultCode(-1);
+                result.setResultMessage(err);
+                AjaxReturn.write(result, response);
             } catch (Exception e) {
                 
             }
